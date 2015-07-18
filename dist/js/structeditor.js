@@ -4,10 +4,13 @@
 
 function structEditor() {
     this.$jsonEditorWrap = $('.jsonEditorWrap');
+    this.$addSiblingCeilBtn = $('.addSiblingCeilBtn');
 }
 
 structEditor.prototype.init = function () {
     this.structCeil();
+
+    this.addSiblingCeil();
 };
 
 /**
@@ -16,6 +19,18 @@ structEditor.prototype.init = function () {
 structEditor.prototype.structCeil = function () {
     var self = this;
     self.$jsonEditorWrap.children('.container-content').append(this.ceilModel());
+}
+
+/**
+ * 添加同级单元
+ */
+structEditor.prototype.addSiblingCeil = function () {
+    console.log('11');
+    var self = this;
+    $('.addSiblingCeilBtn').on("click",function(){
+        console.log('a');
+        self.structCeil();
+    });
 }
 
 /**
@@ -46,13 +61,13 @@ structEditor.prototype.ceilModel = function () {
         '<span class="caret"></span>' +
         '</button>' +
         '<ul class="dropdown-menu">' +
-        '<li><a href="JavaScript">同级</a></li>' +
-        '<li><a href="#">下级</a></li>' +
+        '<li><a href="javascript:;" class="addSiblingCeilBtn">同级</a></li>' +
+        '<li><a href="javascript:;" class="addChildCeilBtn">下级</a></li>' +
         '</ul>' +
         '</div>' +
-        '<button type="button" class="btn btn-default">删除</button>' +
-        '<button type="button" class="btn btn-default">上移</button>' +
-        '<button type="button" class="btn btn-default">下移</button>' +
+        '<button type="button" class="btn btn-default delCeilBtn">删除</button>' +
+        '<button type="button" class="btn btn-default upCeilBtn">上移</button>' +
+        '<button type="button" class="btn btn-default downCeilBtn">下移</button>' +
         '</div>' +
         '</div>' +
         '</div>' +
