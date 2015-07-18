@@ -2,41 +2,74 @@
  * Created by songzhongli on 2015/7/18.
  */
 
-function structEditor() {
+function structcontent() {
     this.$jsonEditorWrap = $('.structContentWrap');
-    this.$addSiblingCeilBtn = $('.addSiblingCeilBtn');
+    this.$container = $(document.body);
 }
 
-structEditor.prototype.init = function () {
+structcontent.prototype.init = function () {
     this.structCeil();
 
     this.addSiblingCeil();
+
+    this.addChildCeilBtn();
+
+    this.deleteCell();
 };
 
 /**
  * 初始化结构单元
+ * @param boolean $isChild 判断是否插入子级
  */
-structEditor.prototype.structCeil = function () {
+structcontent.prototype.structCeil = function (isChild) {
     var self = this;
-    self.$jsonEditorWrap.children('.container-content').append(this.ceilModel());
+    var ceilContent = '';
+    if (isChild) {
+        
+    } else {
+        ceilContent = this.ceilModel();
+    }
+    self.$jsonEditorWrap.children('.container-content').append(ceilContent);
 }
 
 /**
  * 添加同级单元
  */
-structEditor.prototype.addSiblingCeil = function () {
-    console.log('11');
+structcontent.prototype.addSiblingCeil = function () {
+
     var self = this;
-    $('.addSiblingCeilBtn').on("click",function(){
-        console.log('a');
+    self.$container.on("click", '.addSiblingCeilBtn', function () {
         self.structCeil();
     });
 }
 
 /**
+ * 添加下级单元
+ */
+structcontent.prototype.addChildCeilBtn = function () {
+    var self = this;
+
+    self.$container.on("click", '.addChildCeilBtn', function () {
+        self.structCeil();
+    });
+}
+
+
+/**
+ * 删除结构单元
+ */
+structcontent.prototype.deleteCell = function () {
+    var self = this;
+    self.$container.on("click", '.delCeilBtn', function () {
+        $(this).parents('.struct-cell').remove();
+    });
+}
+
+
+/**
  * 结构单元模型
  */
-structEditor.prototype.ceilModel = function () {
+structcontent.prototype.ceilModel = function () {
     var basicCeilModel =
         '<div class="struct-cell cell-border">' +
         '<div class="col-sm-10">' +
@@ -60,7 +93,7 @@ structEditor.prototype.ceilModel = function () {
         '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">增加' +
         '<span class="caret"></span>' +
         '</button>' +
-        '<ul class="dropdown-menu ">' +
+        '<ul class="dropdown-menu w60">' +
         '<li><a href="javascript:;" class="addSiblingCeilBtn">同级</a></li>' +
         '<li><a href="javascript:;" class="addChildCeilBtn">下级</a></li>' +
         '</ul>' +
@@ -76,7 +109,7 @@ structEditor.prototype.ceilModel = function () {
 }
 
 
-var structEditor = new structEditor();
+var structcontent = new structcontent();
 $(function () {
-    structEditor.init();
+    structcontent.init();
 })
