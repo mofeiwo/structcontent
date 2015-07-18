@@ -42,11 +42,11 @@ structEditor.prototype.ceilModel = function () {
         '<div class="cell-action">' +
         '<div class="btn-group-vertical" role="group" aria-label="Vertical button group">' +
         '<div class="btn-group" role="group">' +
-        '<button id="btnGroupVerticalDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">增加' +
+        '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">增加' +
         '<span class="caret"></span>' +
         '</button>' +
-        '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">' +
-        '<li><a href="#">同级</a></li>' +
+        '<ul class="dropdown-menu">' +
+        '<li><a href="JavaScript">同级</a></li>' +
         '<li><a href="#">下级</a></li>' +
         '</ul>' +
         '</div>' +
