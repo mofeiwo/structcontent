@@ -54,3 +54,12 @@
     width:800px;
     margin-right: 15px;
 }
+
+.structContentWrap .cell-border-children {
+    border: 1px dashed #1b3dcc;
+    border-radius: 4px;
+    background-color: transparent;
+    min-height: 210px;
+    max-height: 500px;
+
+}
