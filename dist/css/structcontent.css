@@ -63,3 +63,7 @@
     max-height: 500px;
 
 }
+
+.structContentWrap .cell_img_hide{
+    display: none !important;
+}

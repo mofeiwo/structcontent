@@ -18,6 +18,8 @@ structcontent.prototype.init = function () {
 
     this.downCell();
 
+    this.uploadPic();
+
     this.deleteCell();
 };
 
@@ -113,12 +115,70 @@ structcontent.prototype.storeJson = function () {
         structContent[index] = {
             'title': $(this).find('.title_val').val(),
             'text': $(this).find('.text_val').val(),
-            'img':arrImg
+            'img': arrImg
         };
     });
-    console.log(structContent);
+
     var structJsonContent = JSON.stringify(structContent);
     $('#struct_content').val(structJsonContent);
+}
+
+/**
+ *
+ */
+structcontent.prototype.uploadPic = function () {
+    var self = this;
+    console.log('uploadPic');
+    self.$container.on("change", ".btn_file", function (e) {
+        console.log('uploadPic2');
+        var $cur = $(this);
+
+        var file = $(e.target)[0].files[0];
+
+        if (file) {
+            var fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
+            if (!fileExtension.match(/.jpg|.gif|.png|.bmp|.jpeg/i)) {
+                alert("您选择的文件不是图片，请重新选择！");
+                $(e.target).val("");
+                return;
+            } else if ((file.fileSize || file.size) > (parseInt(1024) * 10240)) {
+                alert("您选择的图片文件大小超过10M,请降低图片质量后重试!");
+                $(e.target).val("");
+                return;
+            } else if (typeof FileReader !== 'undefined') {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    var imgBase64 = this.result;
+                    //$cur.siblings('img').attr("src",imgBase64); //注释 防止base64 写入json
+                    //上传到服务器
+                    $.ajax({
+                        url: "upload.php",
+                        data: {
+                            //'img': encodeURIComponent(imgBase64.split(',')[1])
+                            'img': imgBase64.split(',')[1]
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        beforeSend: function (xhr) {
+                            console.log("图片上传中...");
+                        },
+                        success: function (res) {
+                            var pic_url = "http://img2.tuniucdn.com/site/file/deyonUserCenter/images/nomarl.jpg";
+                            if (res) {
+                                var pic_url = res.url;
+                            }
+                            console.log(pic_url);
+                            //$cur.siblings('img').attr("src", pic_url);
+                        }
+                    });
+                }
+            } else {
+                alert("您的浏览器不支持FileReader,请使用chrome,firefox等现代浏览器！");
+                return;
+            }
+        }
+    });
 }
 
 
@@ -177,6 +237,8 @@ structcontent.prototype.cellModel = function () {
         '<textarea class="form-control text_val" rows="3" placeholder="简介"></textarea>' +
         '</div>' +
         '<div class="cell-img img_val">' +
+        '<input type="file" class="btn_file cell_img_hide">' +
+        '<input class="btn_change_pic" type="button" onclick="$(this).siblings(\'.btn_file\').trigger(\'click\');" value="上传图片">'+
         '<img src="/dist/image/img.png" ref="/dist/image/img.png" alt="图片" width="100" class="img-rounded">' +
         '<img src="/dist/image/img.png" ref="/dist/image/img.png" alt="图片" width="100" class="img-rounded">' +
         '<img src="/dist/image/img.png" ref="/dist/image/img.png" alt="图片" width="100" class="img-rounded">' +
