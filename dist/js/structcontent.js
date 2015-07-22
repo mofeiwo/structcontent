@@ -2,6 +2,8 @@
  * Created by songzhongli on 2015/7/18.
  */
 
+var structData = {};//结构数据
+
 function structcontent() {
     this.$jsonEditorWrap = $('.structContentWrap');
     this.$container = $(document.body);
@@ -121,6 +123,7 @@ structcontent.prototype.storeJson = function () {
 
     var structJsonContent = JSON.stringify(structContent);
     $('#struct_content').val(structJsonContent);
+    $('#showJsonData').html(JSON.stringify(structContent,null,2));
 }
 
 /**
@@ -173,7 +176,7 @@ structcontent.prototype.uploadPic = function () {
                                 alert('上传失败');
                             }
 
-                            $cur.siblings('img').attr("src", pic_url);
+                            $('.cell-img').attr("src", pic_url);
                         }
                     });
                 }
