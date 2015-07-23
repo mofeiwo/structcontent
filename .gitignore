@@ -29,3 +29,6 @@ phpunit.phar
 
 #poi ignore files
 /config/db.php
+
+#upload ignore upload img files
+/upload

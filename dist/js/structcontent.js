@@ -171,12 +171,11 @@ structcontent.prototype.uploadPic = function () {
 
                                 var picHtml = "<img src='"+pic_url+"' ref='"+pic_url+"' alt='图片' width='100' class='img-rounded'>";
 
-                                $('.cell-img').append(picHtml)
+                                $cur.parent('.cell-img').append(picHtml);
                             }else{
                                 alert('上传失败');
                             }
 
-                            $('.cell-img').attr("src", pic_url);
                         }
                     });
                 }
@@ -246,7 +245,6 @@ structcontent.prototype.cellModel = function () {
         '<div class="cell-img img_val">' +
         '<input type="file" class="btn_file cell_img_hide">' +
         '<input class="btn_change_pic" type="button" onclick="$(this).siblings(\'.btn_file\').trigger(\'click\');" value="上传图片">'+
-        '<img src="/dist/image/img.png" ref="/dist/image/img.png" alt="图片" width="100" class="img-rounded">' +
         '</div>' +
         '</div>' +
         '<div class="col-sm-2">' +
