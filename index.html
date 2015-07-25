@@ -65,7 +65,7 @@
 
                 <div class="col-sm-3">
                     <div>
-                        <pre  id="showJsonData">
+                        <pre id="showJsonData">
 
                         </pre>
                     </div>
@@ -75,9 +75,152 @@
     </div>
 </div>
 
+<script id="T-Advance" type="text/html">
+    <div class="struct-cell cell-border">
+        <div class="col-sm-10">
+            <div class="cell-title">
+                <input type="text" class="form-control title_val" placeholder="标题">
+            </div>
+            <div class="cell-content">
+                {{include 'T-Advance-Content'}}
+            </div>
+        </div>
+        <div class="col-sm-2">
+            {{include 'Struct-Cell-Action'}}
+        </div>
+        <input type="hidden" class="struct-type" value="advance"/>
+    </div>
+</script>
+
+<script id="T-Advance-Content" type="text/html">
+    <div class="cell-content-child">
+        <div class="cell-content-txt">
+            <textarea class="form-control text_val" rows="3" placeholder="内容"></textarea>
+        </div>
+        <div class="cell-content-img">
+            <input type="file" class="btn_file cell_img_hide">
+            <input class="btn_change_pic" type="button"
+                   onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+        </div>
+    </div>
+</script>
+
+<script id="T-Simple" type="text/html">
+    <div class="struct-cell cell-border">
+        <div class="col-sm-10">
+            <div class="cell-content">
+                {{include 'T-Simple-Content'}}
+            </div>
+        </div>
+        <div class="col-sm-2">
+            {{include 'Struct-Cell-Action'}}
+        </div>
+        <input type="hidden" class="struct-type" value="simple"/>
+    </div>
+</script>
+
+<script id="T-Simple-Content" type="text/html">
+    <div class="cell-content-txt">
+        <textarea class="form-control text_val" rows="3" placeholder="内容"></textarea>
+    </div>
+    <div class="cell-content-img">
+        <input type="file" class="btn_file cell_img_hide">
+        <input class="btn_change_pic" type="button"
+               onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+    </div>
+</script>
+
+<script id="Struct-Cell-Action" type="text/html">
+    <div class="cell-action">
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">增加
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu w60">
+                    <li><a href="javascript:;" class="addSiblingCellBtn">高级</a></li>
+                    <li><a href="javascript:;" class="addSiblingCellSimpleBtn">简单</a></li>
+                    <li><a href="javascript:;" class="addChildCellBtn">下级</a></li>
+
+                </ul>
+            </div>
+            <button type="button" class="btn btn-default delCellBtn">删除</button>
+            <button type="button" class="btn btn-default upCellBtn">上移</button>
+            <button type="button" class="btn btn-default downCellBtn">下移</button>
+        </div>
+    </div>
+</script>
+
+<script id="T-Struct-Display" type="text/html">
+
+    {{if structData && structData.length>0}}
+    {{each structData as cell idx}}
+    {{if cell.type=='advance'}}
+    <div class="struct-cell cell-border">
+        <div class="col-sm-10">
+            <div class="cell-title">
+                <input type="text" value="{{cell.title}}" class="form-control title_val" placeholder="标题">
+            </div>
+            <div class="cell-content">
+                {{each cell.content as content}}
+                <div class="cell-content-child">
+                    <div class="cell-content-txt">
+                        <textarea class="form-control text_val" rows="3" placeholder="内容">{{content.txt}}</textarea>
+                    </div>
+                    <div class="cell-content-img">
+                        <input type="file" class="btn_file cell_img_hide">
+                        <input class="btn_change_pic" type="button"
+                               onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                        {{if content.img && content.img.length>0}}
+                        {{each content.img as image}}
+                        <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
+                        {{/each}}
+                        {{/if}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="col-sm-2">
+            {{include 'Struct-Cell-Action'}}
+        </div>
+        <input type="hidden" class="struct-type" value="advance"/>
+    </div>
+    {{else if cell.type=='simple'}}
+    <div class="struct-cell cell-border">
+        <div class="col-sm-10">
+            <div class="cell-content">
+
+                <div class="cell-content-txt">
+                    <textarea class="form-control text_val" rows="3" placeholder="内容">{{cell.content.txt}}</textarea>
+                </div>
+                <div class="cell-content-img">
+                    <input type="file" class="btn_file cell_img_hide">
+                    <input class="btn_change_pic" type="button"
+                           onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                    {{if cell.content.img && cell.content.img.length>0}}
+                    {{each cell.content.img as image}}
+                    <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
+                    {{/each}}
+                    {{/if}}
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-2">
+            {{include 'Struct-Cell-Action'}}
+        </div>
+        <input type="hidden" class="struct-type" value="simple"/>
+    </div>
+    {{/if}}
+    {{/each}}
+    {{/if}}
+</script>
+
 
 <script src="/dist/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/dist/js/template.js"></script>
 <script src="/dist/js/structcontent.js"></script>
 </body>
 </body>

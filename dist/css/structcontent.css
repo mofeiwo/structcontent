@@ -4,7 +4,7 @@
  */
 
 .structContentWrap {
-    height: 600px;
+    height: 900px;
     border: 1px solid #d4d4d4;
     box-shadow: 2px 2px 5px #d3d6da;
     background-color: #fff;
@@ -26,16 +26,25 @@
     float: right;
 }
 
-.structContentWrap .cell-title, .cell-description, .cell-img, .cell-action {
+.structContentWrap .cell-title, .cell-content, .cell-content-img, .cell-action {
     margin-top: 4px;
 }
 
-.structContentWrap .cell-img img {
+.structContentWrap .cell-content-child {
+    margin-left: 45px;
+}
+
+.structContentWrap .cell-content-img {
+    min-height: 80px;
+    max-height: 160px;
+}
+
+.structContentWrap .cell-content-img img {
     margin: 0px 2px;
 }
 
 .structContentWrap .cell-border {
-    border: 1px dashed #ccc;
+
     border-radius: 4px;
     background-color: transparent;
     min-height: 210px;
@@ -50,7 +59,7 @@
 
 .structContentWrap .struct-cell-children {
     float: right;
-    width:800px;
+    width: 800px;
     margin-right: 15px;
 }
 
@@ -63,6 +72,6 @@
 
 }
 
-.structContentWrap .cell_img_hide{
+.structContentWrap .cell_img_hide {
     display: none !important;
 }
