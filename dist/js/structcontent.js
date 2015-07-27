@@ -132,7 +132,7 @@ structcontent.prototype.eventCollection = function () {
  */
 structcontent.prototype.structCell = function () {
     var self = this;
-    structData = '';
+    //structData = '';
     if (structData) {
         var cellContent = template('T-Struct-Display', {structData: structData});
         self.$jsonEditorWrap.children('.struct-container-content').append(cellContent);
