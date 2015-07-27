@@ -3,12 +3,19 @@
  * 结构化编辑器样式
  */
 
+
 .structContentWrap {
     height: 900px;
+    width: 900px;
     border: 1px solid #d4d4d4;
     box-shadow: 2px 2px 5px #d3d6da;
     background-color: #fff;
     overflow-x: auto;
+
+}
+
+.structContentWrap .red {
+    color: #F00;
 }
 
 .structContentWrap .w60 {
@@ -54,7 +61,6 @@
 
 .structContentWrap .struct-cell {
     margin: 4px 0px;
-    width: 850px;
 }
 
 .structContentWrap .struct-cell-children {
@@ -74,4 +80,9 @@
 
 .structContentWrap .cell_img_hide {
     display: none !important;
+}
+
+.structContentWrap .reset-margin-padding{
+    margin: 0px;
+    padding: 0px;
 }

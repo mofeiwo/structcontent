@@ -3,7 +3,7 @@
  */
 
 //结构数据
-var structData =[
+var structData = [
     {
         "title": "天堂斐济—我在斐济发现幸福",
         "type": "advance",
@@ -105,9 +105,11 @@ structcontent.prototype.init = function () {
 
     this.downCell();
 
-    this.uploadPic();
-
     this.deleteCell();
+
+    this.deleteCellContent();
+
+    this.uploadPic();
 
     this.saveAllCell();
 
@@ -130,6 +132,7 @@ structcontent.prototype.eventCollection = function () {
  */
 structcontent.prototype.structCell = function () {
     var self = this;
+    structData = '';
     if (structData) {
         var cellContent = template('T-Struct-Display', {structData: structData});
         self.$jsonEditorWrap.children('.struct-container-content').append(cellContent);
@@ -229,6 +232,73 @@ structcontent.prototype.downCell = function () {
 
     });
 }
+/**
+ * 删除结构单元
+ */
+structcontent.prototype.deleteCell = function () {
+    var self = this;
+    self.$container.on("click", '.delCellBtn', function () {
+        if (confirm('确认删除吗？')) {
+            $(this).parents('.struct-cell').remove();
+
+            self.eventCollection();
+        }
+        return false;
+    });
+}
+
+
+/**
+ * 删除 高级 结构单元中 （文字和图片 整体删除）
+ */
+structcontent.prototype.deleteCellContent = function () {
+    var self = this;
+    self.$container.on("click", '.delCellContentBtn', function () {
+        if (confirm('确认删除吗？')) {
+            $(this).parents('.cell-content-child').remove();
+
+            self.eventCollection();
+        }
+        return false;
+    });
+}
+
+/**
+ * 保存按钮
+ */
+structcontent.prototype.saveAllCell = function () {
+    var self = this;
+    self.$container.on("click", '.btn_save_all', function () {
+        self.storeJson();
+        alert('保存成功');
+    });
+}
+
+/**
+ * 刷新操作事件
+ */
+
+structcontent.prototype.refreshActionEvent = function () {
+    // 所有结构单元 对象
+    var structCellObj = $('.struct-container-content > .struct-cell');
+    var cellLength = structCellObj.length;
+    if (cellLength <= 1) {
+        //只有一个单元时候，因此 删除、上移和下移
+        structCellObj.eq(0).find('.delCellBtn').hide();
+        structCellObj.eq(0).find('.upCellBtn').hide();
+        structCellObj.eq(0).find('.downCellBtn').hide();
+    } else {
+        //所有的操作都显示
+        $('.struct-cell .delCellBtn').show();
+        $('.struct-cell .upCellBtn').show();
+        $('.struct-cell .downCellBtn').show();
+        //第一个没有上移
+        structCellObj.eq(0).find('.upCellBtn').hide();
+
+        //最后一个没有下移
+        structCellObj.eq(cellLength - 1).find('.downCellBtn').hide();
+    }
+}
 
 /**
  * 单元模型 存储到JSON中
@@ -259,7 +329,7 @@ structcontent.prototype.storeJson = function () {
                 'type': structType, //title-text-img
                 'content': arrContent,
             };
-        }else if(structType == 'simple'){
+        } else if (structType == 'simple') {
             var arrImg = [];//图片数组
 
             var currImgLength = $(this).find('img').length;
@@ -280,8 +350,6 @@ structcontent.prototype.storeJson = function () {
                 'content': arrContent,
             };
         }
-
-
 
 
     });
@@ -354,59 +422,23 @@ structcontent.prototype.uploadPic = function () {
     });
 }
 
-
 /**
- * 删除结构单元
+ * 判断变量是否为空
+ * @param value
+ * @returns {boolean}
  */
-structcontent.prototype.deleteCell = function () {
-    var self = this;
-    self.$container.on("click", '.delCellBtn', function () {
-        if (confirm('确认删除吗？')) {
-            $(this).parents('.struct-cell').remove();
-
-            self.eventCollection();
-        }
-        return false;
-    });
-}
-
-/**
- * 保存按钮
- */
-structcontent.prototype.saveAllCell = function () {
-    var self = this;
-    self.$container.on("click", '.btn_save_all', function () {
-        self.storeJson();
-        alert("保存成功！");
-    });
-}
-
-/**
- * 刷新操作事件
- */
-
-structcontent.prototype.refreshActionEvent = function () {
-    // 所有结构单元 对象
-    var structCellObj = $('.struct-container-content > .struct-cell');
-    var cellLength = structCellObj.length;
-    if (cellLength <= 1) {
-        //只有一个单元时候，因此 删除、上移和下移
-        structCellObj.eq(0).find('.delCellBtn').hide();
-        structCellObj.eq(0).find('.upCellBtn').hide();
-        structCellObj.eq(0).find('.downCellBtn').hide();
-    } else {
-        //所有的操作都显示
-        $('.struct-cell .delCellBtn').show();
-        $('.struct-cell .upCellBtn').show();
-        $('.struct-cell .downCellBtn').show();
-        //第一个没有上移
-        structCellObj.eq(0).find('.upCellBtn').hide();
-
-        //最后一个没有下移
-        structCellObj.eq(cellLength - 1).find('.downCellBtn').hide();
-    }
-}
-
+//function isEmpty(value) {
+//    if (value == null || value == "" || value == "undefined" || value == undefined || value == "null") {
+//        return true;
+//    }
+//    else {
+//        value = value.replace(/\s/g, "");
+//        if (value == "") {
+//            return true;
+//        }
+//        return false;
+//    }
+//}
 
 var structcontent = new structcontent();
 $(function () {

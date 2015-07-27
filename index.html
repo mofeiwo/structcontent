@@ -35,14 +35,14 @@
                                     <button type="button" class="btn btn-default btn-xs btn_save_all" title="全部保存">
                                         <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">保存</span>
                                     </button>
-                                    <button type="button" class="btn btn-default btn-xs btn_preview_sch" title="保存并预览">
-                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true">预览</span>
-                                    </button>
+                                    <!--<button type="button" class="btn btn-default btn-xs btn_preview_sch" title="保存并预览">-->
+                                        <!--<span class="glyphicon glyphicon-eye-open" aria-hidden="true">预览</span>-->
+                                    <!--</button>-->
                                 </span>
 
-                            <div class="sch_msg_box float_right sch_hide" style="display: none;">
+                            <div class="float_right struct-msg" style="display: none;">
                                 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                                <span class="sch_msg_text">数据处理中...</span>
+                                <span class="struct_msg_text red">数据处理中...</span>
                             </div>
 
 
@@ -77,7 +77,7 @@
 
 <script id="T-Advance" type="text/html">
     <div class="struct-cell cell-border">
-        <div class="col-sm-10">
+        <div class="col-md-11 reset-margin-padding">
             <div class="cell-title">
                 <input type="text" class="form-control title_val" placeholder="标题">
             </div>
@@ -85,7 +85,7 @@
                 {{include 'T-Advance-Content'}}
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-md-1">
             {{include 'Struct-Cell-Action'}}
         </div>
         <input type="hidden" class="struct-type" value="advance"/>
@@ -94,15 +94,22 @@
 
 <script id="T-Advance-Content" type="text/html">
     <div class="cell-content-child">
-        <div class="cell-content-txt">
-            <textarea class="form-control text_val" rows="3" placeholder="内容"></textarea>
+        <div class="col-md-11 reset-margin-padding">
+            <div class="cell-content-txt">
+                <textarea class="form-control text_val" rows="3" placeholder="内容"></textarea>
+            </div>
+            <div class="cell-content-img">
+                <input type="file" class="btn_file cell_img_hide">
+                <input class="btn_change_pic" type="button"
+                       onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+            </div>
         </div>
-        <div class="cell-content-img">
-            <input type="file" class="btn_file cell_img_hide">
-            <input class="btn_change_pic" type="button"
-                   onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+        <div class="col-md-1">
+            {{include 'Struct-Cell-Content-Action'}}
         </div>
+
     </div>
+
 </script>
 
 <script id="T-Simple" type="text/html">
@@ -147,6 +154,14 @@
             <button type="button" class="btn btn-default delCellBtn">删除</button>
             <button type="button" class="btn btn-default upCellBtn">上移</button>
             <button type="button" class="btn btn-default downCellBtn">下移</button>
+        </div>
+    </div>
+</script>
+
+<script id="Struct-Cell-Content-Action" type="text/html">
+    <div class="cell-content-action">
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-default glyphicon glyphicon-remove delCellContentBtn"></button>
         </div>
     </div>
 </script>
