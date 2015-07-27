@@ -1,0 +1,65 @@
+{{if structData && structData.length>0}}
+{{each structData as cell idx}}
+{{if cell.type=='advance'}}
+<div class="struct-cell cell-border">
+    <div class="col-md-11 reset-margin-padding">
+        <div class="cell-title">
+            <input type="text" value="{{cell.title}}" class="form-control title_val" placeholder="标题">
+        </div>
+        <div class="cell-content">
+            {{each cell.content as content}}
+            <div class="cell-content-child">
+                <div class="col-md-11 reset-margin-padding">
+                    <div class="cell-content-txt">
+                        <textarea class="form-control text_val" rows="3" placeholder="内容">{{content.txt}}</textarea>
+                    </div>
+                    <div class="cell-content-img">
+                        <input type="file" class="btn_file cell_img_hide">
+                        <input class="btn_change_pic" type="button"
+                               onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                        {{if content.img && content.img.length>0}}
+                        {{each content.img as image}}
+                        <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
+                        {{/each}}
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    {{include './Struct-Cell-Content-Action'}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="col-md-1">
+        {{include './Struct-Cell-Action'}}
+    </div>
+    <input type="hidden" class="struct-type" value="advance"/>
+</div>
+{{else if cell.type=='simple'}}
+<div class="struct-cell cell-border">
+    <div class="col-md-11 reset-margin-padding">
+        <div class="cell-content">
+            <div class="cell-content-txt">
+                <textarea class="form-control text_val" rows="3" placeholder="内容">{{cell.content.txt}}</textarea>
+            </div>
+            <div class="cell-content-img">
+                <input type="file" class="btn_file cell_img_hide">
+                <input class="btn_change_pic" type="button"
+                       onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                {{if cell.content.img && cell.content.img.length>0}}
+                {{each cell.content.img as image}}
+                <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
+                {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        {{include './Struct-Cell-Action'}}
+    </div>
+    <input type="hidden" class="struct-type" value="simple"/>
+</div>
+{{/if}}
+{{/each}}
+{{/if}}

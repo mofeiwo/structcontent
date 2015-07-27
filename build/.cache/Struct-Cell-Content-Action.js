@@ -1,0 +1,2 @@
+/*TMODJS:{"version":1,"md5":"69f2b21a5975c63c44740b0627b4ef18"}*/
+template('Struct-Cell-Content-Action','<div class="cell-content-action"> <div class="btn-group-vertical" role="group" aria-label="Vertical button group"> <button type="button" class="btn btn-default glyphicon glyphicon-remove delCellContentBtn"></button> </div> </div>');

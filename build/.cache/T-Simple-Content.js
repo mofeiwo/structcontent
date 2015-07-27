@@ -1,0 +1,2 @@
+/*TMODJS:{"version":1,"md5":"3939050b4716a3f60ea77ebd63bff4fd"}*/
+template('T-Simple-Content','<div class="cell-content-txt"> <textarea class="form-control text_val" rows="3" placeholder="内容"></textarea> </div> <div class="cell-content-img"> <input type="file" class="btn_file cell_img_hide"> <input class="btn_change_pic" type="button" onclick="$(this).siblings(\'.btn_file\').trigger(\'click\');" value="图片"> </div>');

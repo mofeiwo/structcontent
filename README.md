@@ -48,3 +48,13 @@ struct-cell 一个结构单元。目前包含 text 、 textarea 、 img 后续�
 
 ## 结构内容定位
 1. 简单，不包含二维以上情况。
+
+## 安装NodeJS和预编译
+1. 依赖软件：yum -y install gcc make gcc-c++ openssl-devel wget
+2. 下载源码：wget https://nodejs.org/dist/v0.12.7/node-v0.12.7.tar.gz （注意下载源码地址）
+3. 安装到指定目录： ./configure --prefix=/usr/local/
+4. 安装：make && make install
+5. 检测：node -v 显示：v0.12.7
+6. 安装NodeJS ：npm install -g tmodjs
+
+
