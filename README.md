@@ -12,8 +12,9 @@ class 中自定义的值 用下划线连接
 struct-cell 一个结构单元。目前包含 text 、 textarea 、 img 后续包括 视频等
 
 ## v1.0.1 beta1
-1. 高级结构单元中的 文本域和图片 个数大于2 可以删除
+1. ~~高级结构单元中的 文本域和图片 个数大于2 可以删除~~
 2. 样式优化
+3. ~~实例多个~~
 
 ## v1.0 release
 1. 增加 高级结构单元(包含 标题、文本域和图片)
@@ -40,6 +41,7 @@ struct-cell 一个结构单元。目前包含 text 、 textarea 、 img 后续�
 2. 高版本浏览器缓存
 3. 定制模板
 4. 拖拽实现上移和下移
+5. 高级和初级切换
 
 ## 模板类别
 1. 模板一：文本域+图片
@@ -56,5 +58,6 @@ struct-cell 一个结构单元。目前包含 text 、 textarea 、 img 后续�
 4. 安装：make && make install
 5. 检测：node -v 显示：v0.12.7
 6. 安装NodeJS ：npm install -g tmodjs
+7. 编译模板：tmod ./tpl --output ./build
 
 

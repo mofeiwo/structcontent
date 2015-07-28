@@ -1,2 +1,2 @@
-/*TMODJS:{"version":1,"md5":"69f2b21a5975c63c44740b0627b4ef18"}*/
-template('Struct-Cell-Content-Action','<div class="cell-content-action"> <div class="btn-group-vertical" role="group" aria-label="Vertical button group"> <button type="button" class="btn btn-default glyphicon glyphicon-remove delCellContentBtn"></button> </div> </div>');
+/*TMODJS:{"version":2,"md5":"9519be344b8db8c47823f56f92cc54f0"}*/
+template('Struct-Cell-Content-Action','<div class="cell-content-action"> <div class="btn-group-vertical" role="group" aria-label="Vertical button group"> <button type="button" class="btn btn-default glyphicon glyphicon-remove delCellContentBtn" title="ɾ��"></button> </div> </div>');
