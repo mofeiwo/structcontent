@@ -4,43 +4,50 @@
  */
 
 .structContentWrap {
-    min-height: 150px;
-    max-height: 800px;
+
     width: 900px;
-    border: 1px solid #d4d4d4;
+
     box-shadow: 2px 2px 5px #d3d6da;
     background-color: #fff;
+
+
+}
+
+.struct-container-content {
+    min-height: 150px;
+    max-height: 800px;
     overflow-x: auto;
-
-
+    border-left: 1px solid #d4d4d4;
+    border-right: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
 }
 
 /*div中class值为structContentWrap在webkit内核scrollbar 样式*/
-.structContentWrap::-webkit-scrollbar {
+.struct-container-content::-webkit-scrollbar {
     width: 6px;
 }
 
-.structContentWrap::-webkit-scrollbar-track {
+.struct-container-content::-webkit-scrollbar-track {
     background-color: #d3d3d3;
 }
 
-.structContentWrap::-webkit-scrollbar-thumb {
+.struct-container-content::-webkit-scrollbar-thumb {
     background-color: #696969;
 }
 
-.structContentWrap::-webkit-scrollbar-button {
+.struct-container-content::-webkit-scrollbar-button {
     background-color: #d3d3d3;
 }
 
-.structContentWrap::-webkit-scrollbar-corner {
+.struct-container-content::-webkit-scrollbar-corner {
     background-color: black;
 }
 
+/*div中class值为structContentWrap 内部html 在webkit内核scrollbar 样式*/
 .structContentWrap ::-webkit-scrollbar {
     width: 6px;
 }
 
-/*div中class值为structContentWrap 内部html 在webkit内核scrollbar 样式*/
 .structContentWrap ::-webkit-scrollbar-track {
     background-color: #d3d3d3;
 }
@@ -66,11 +73,12 @@
 }
 
 .structContentWrap .tool_bar {
-    margin-bottom: 5px;
     background-color: #dff0d8;
     height: 34px;
     line-height: 34px;
-    border-bottom: 1px solid #d6e9c6;
+    border-left: 1px solid #d6e9c6;
+    border-right: 1px solid #d6e9c6;
+    border-top: 1px solid #d6e9c6;
 }
 
 .structContentWrap .float_right {
