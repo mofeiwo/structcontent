@@ -12,7 +12,7 @@
         "escape": true,
         "compress": true,
         "type": "default",
-        "runtime": "template.js",
+        "runtime": "structtemplate.js",
         "combo": true,
         "minify": true,
         "cache": true

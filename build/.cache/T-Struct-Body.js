@@ -1,2 +1,2 @@
-/*TMODJS:{"version":5,"md5":"c44406785cb7d983fdee59ddf0460b9b"}*/
+/*TMODJS:{"version":6,"md5":"e5cc6226a7bfb06b7c7550f5abbdd1a2"}*/
 template('T-Struct-Body','<div class="col-md-12 struct-container-content"></div>');

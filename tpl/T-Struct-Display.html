@@ -11,7 +11,7 @@
             <div class="cell-content-child">
                 <div class="col-md-11 reset-margin-padding">
                     <div class="cell-content-txt">
-                        <textarea class="form-control text_val" rows="3" placeholder="内容">{{content.txt}}</textarea>
+                        <textarea class="form-control text_val" rows="6" placeholder="内容">{{content.txt}}</textarea>
                     </div>
                     <div class="cell-content-img">
                         <input type="file" class="btn_file cell_img_hide">
@@ -20,7 +20,7 @@
                         <span class="cellImgList">
                         {{if content.img && content.img.length>0}}
                         {{each content.img as image}}
-                        <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
+                        <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'><i class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
                         {{/each}}
                         {{/if}}
                         </span>
@@ -43,7 +43,7 @@
     <div class="col-md-11 reset-margin-padding">
         <div class="cell-content">
             <div class="cell-content-txt">
-                <textarea class="form-control text_val" rows="3" placeholder="内容">{{cell.content.txt}}</textarea>
+                <textarea class="form-control text_val" rows="6" placeholder="内容">{{cell.content.txt}}</textarea>
             </div>
             <div class="cell-content-img">
                 <input type="file" class="btn_file cell_img_hide">
@@ -52,7 +52,7 @@
                 <span class="cellImgList">
                 {{if cell.content.img && cell.content.img.length>0}}
                 {{each cell.content.img as image}}
-                <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
+                <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'><i class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
                 {{/each}}
                 {{/if}}
                 </span>
