@@ -17,11 +17,13 @@
                         <input type="file" class="btn_file cell_img_hide">
                         <input class="btn_change_pic" type="button"
                                onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                        <span class="cellImgList">
                         {{if content.img && content.img.length>0}}
                         {{each content.img as image}}
                         <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
                         {{/each}}
                         {{/if}}
+                        </span>
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -47,16 +49,18 @@
                 <input type="file" class="btn_file cell_img_hide">
                 <input class="btn_change_pic" type="button"
                        onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                <span class="cellImgList">
                 {{if cell.content.img && cell.content.img.length>0}}
                 {{each cell.content.img as image}}
                 <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'>
                 {{/each}}
                 {{/if}}
+                </span>
             </div>
         </div>
     </div>
     <div class="col-sm-1">
-        {{include './Struct-Cell-Action'}}
+        {{include './Struct-Cell-Simple-Action'}}
     </div>
     <input type="hidden" class="struct-type" value="simple"/>
 </div>

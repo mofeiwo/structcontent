@@ -3,6 +3,8 @@
 </div>
 <div class="cell-content-img">
     <input type="file" class="btn_file cell_img_hide">
-    <input class="btn_change_pic" type="button"
+    <input class="btn_change_pic btnChangePic" type="button"
            onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+    <span class="cellImgList">{{#cellContentImg}}</span>
+
 </div>

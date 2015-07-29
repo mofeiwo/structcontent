@@ -61,7 +61,7 @@ structcontent.prototype.loadFunc = function () {
 
     this.deleteCellContent();
 
-    //this.transferCell();
+    this.transferCell();
 
     this.uploadPic();
 
@@ -87,11 +87,11 @@ structcontent.prototype.structCell = function () {
     var self = this,
         cellContent;
 
-    if (structData) {
+    if (self.settings.structData) {
         cellContent = template('T-Struct-Display', {structData: self.settings.structData});
         self.$structContainerContent.append(cellContent);
     } else {
-        cellContent = template('T-Advance', {});
+        cellContent = template('T-Simple', {});
         self.$structContainerContent.append(cellContent);
     }
 
@@ -191,35 +191,52 @@ structcontent.prototype.downCell = function () {
  * 高级单元和简单单元之间切换
  */
 structcontent.prototype.transferCell = function () {
-    var self = this;
+    var self = this,
+        structCellObj,
+        structCellType,
+        cellContentTxt,
+        cellContentImg;
     self.$container.on('click', '.transferCellBtn', function () {
-        var structCellObj = $(this).parents('.struct-cell');
-        var structCellType = structCellObj.find('.struct-type').val();
-        var structContentLength = structCellObj.find('.cell-content > .cell-content-child').length;
-        if (structContentLength > 1) {
-            alert("内容太多，无法切换!");
-            return;
-        } else if (structContentLength == 1) {
-            var cellContentTxt = structCellObj.find('.text_val').val();
-            var cellContentImg = structCellObj.find('.cell-content-img').html();
+        structCellObj = $(this).parents('.struct-cell');
+        structCellType = structCellObj.find('.struct-type').val();
+        cellContentTxt = structCellObj.find('.text_val').val();
+        cellContentImg = structCellObj.find('.cell-content-img').children('.cellImgList').html();
 
-            if (structCellType == 'advance') {
-                var cellContentTitle = structCellObj.find('.title_val').val();
-                var simpleContent = template('T-Simple',{'cellContentTxt':cellContentTxt});
-                structCellObj.after(simpleContent);
+        if (structCellType == 'advance') {
+            var structContentLength = structCellObj.find('.cell-content > .cell-content-child').length;
+            if (structContentLength > 1) {
+                alert("内容太多，无法切换!");
+                return;
+            } else if (structContentLength == 1) {
+                if (confirm('切换后标题讲丢失，确定操作？')) {
+                    var simpleContent = template('T-Simple', {
+                        'cellContentTxt': cellContentTxt,
+                        'cellContentImg': cellContentImg
+                    });
+                    structCellObj.after(simpleContent);
+                    structCellObj.remove();
 
-            } else if (structCellType == 'simple') {
-
+                    self.eventCollection();
+                } else {
+                    return;
+                }
             } else {
-                alert("结构单元类型不存在！");
+                alert("无法识别您的意思！");
                 return;
             }
+        } else if (structCellType == 'simple') {
+            if (confirm('确定切换？')) {
+                var advanceContent = template('T-Advance', {
+                    'cellContentTxt': cellContentTxt,
+                    'cellContentImg': cellContentImg
+                });
+                structCellObj.after(advanceContent);
+                structCellObj.remove();
 
-
-
-
+                self.eventCollection();
+            }
         } else {
-            alert("无法识别您的意思！");
+            alert("结构单元类型不存在！");
             return;
         }
     });
