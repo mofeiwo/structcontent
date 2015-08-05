@@ -34,6 +34,7 @@ structcontent.prototype.initSettings = function () {
     this.ensureDefault("structClass", "");
     this.ensureDefault("structField", "");
     this.ensureDefault("structData", "");
+    this.ensureDefault("structType", "simple");
 
     this.$structContentWrap = $('.' + this.settings.structClass);
     this.$structContentWrap.append(template('Struct-Tool-Bar'));
@@ -85,13 +86,21 @@ structcontent.prototype.eventCollection = function () {
  */
 structcontent.prototype.structCell = function () {
     var self = this,
-        cellContent;
+        cellContent,
+        structType;
 
     if (self.settings.structData) {
         cellContent = template('T-Struct-Display', {structData: self.settings.structData});
         self.$structContainerContent.append(cellContent);
     } else {
-        cellContent = template('T-Simple', {});
+        structType = self.settings.structType;
+        if(structType == 'advance')
+        {
+            cellContent = template('T-Advance', {});
+        }else{
+            cellContent = template('T-Simple', {});
+        }
+
         self.$structContainerContent.append(cellContent);
     }
 

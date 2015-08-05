@@ -20,7 +20,13 @@
                         <span class="cellImgList">
                         {{if content.img && content.img.length>0}}
                         {{each content.img as image}}
-                        <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'><i class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
+                            {{if image.isFb}}
+                            <img src="{{image.small}}" data-src="{{image.original}}" class='img-rounded' width="80"><i
+                                class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
+                            {{else}}
+                            <img src="{{image.original}}" data-src="" class='img-rounded' width="80"><i
+                                class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
+                            {{/if}}
                         {{/each}}
                         {{/if}}
                         </span>
@@ -52,7 +58,13 @@
                 <span class="cellImgList">
                 {{if cell.content.img && cell.content.img.length>0}}
                 {{each cell.content.img as image}}
-                <img src="{{image}}" data-src="{{image}}" width='80' class='img-rounded'><i class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
+                    {{if image.isFb}}
+                    <img src="{{image.small}}" data-src="{{image.original}}" class='img-rounded' width="80"><i
+                        class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
+                    {{else}}
+                    <img src="{{image.original}}" data-src="" class='img-rounded'  width="80"><i
+                        class='fa fa-fw fa-close delUploadFile' style='cursor: pointer' title='删除文件'></i>
+                    {{/if}}
                 {{/each}}
                 {{/if}}
                 </span>

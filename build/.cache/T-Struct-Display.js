@@ -1,4 +1,4 @@
-/*TMODJS:{"version":7,"md5":"6aac7bbe90758c39c2534196ea9dd20e"}*/
+/*TMODJS:{"version":10,"md5":"b1f14d9259291941c8e647348e22d017"}*/
 template('T-Struct-Display',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,structData=$data.structData,$each=$utils.$each,cell=$data.cell,idx=$data.idx,$escape=$utils.$escape,content=$data.content,$index=$data.$index,image=$data.image,include=function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);$out+=text;return $out;},$out='';if(structData && structData.length>0){
@@ -16,11 +16,19 @@ $out+='</textarea> </div> <div class="cell-content-img"> <input type="file" clas
 if(content.img && content.img.length>0){
 $out+=' ';
 $each(content.img,function(image,$index){
+$out+=' ';
+if(image.isFb){
 $out+=' <img src="';
-$out+=$escape(image);
+$out+=$escape(image.small);
 $out+='" data-src="';
-$out+=$escape(image);
-$out+='" width=\'80\' class=\'img-rounded\'><i class=\'fa fa-fw fa-close delUploadFile\' style=\'cursor: pointer\' title=\'删除文件\'></i> ';
+$out+=$escape(image.original);
+$out+='" class=\'img-rounded\' width="80"><i class=\'fa fa-fw fa-close delUploadFile\' style=\'cursor: pointer\' title=\'删除文件\'></i> ';
+}else{
+$out+=' <img src="';
+$out+=$escape(image.original);
+$out+='" data-src="" class=\'img-rounded\' width="80"><i class=\'fa fa-fw fa-close delUploadFile\' style=\'cursor: pointer\' title=\'删除文件\'></i> ';
+}
+$out+=' ';
 });
 $out+=' ';
 }
@@ -38,11 +46,19 @@ $out+='</textarea> </div> <div class="cell-content-img"> <input type="file" clas
 if(cell.content.img && cell.content.img.length>0){
 $out+=' ';
 $each(cell.content.img,function(image,$index){
+$out+=' ';
+if(image.isFb){
 $out+=' <img src="';
-$out+=$escape(image);
+$out+=$escape(image.small);
 $out+='" data-src="';
-$out+=$escape(image);
-$out+='" width=\'80\' class=\'img-rounded\'><i class=\'fa fa-fw fa-close delUploadFile\' style=\'cursor: pointer\' title=\'删除文件\'></i> ';
+$out+=$escape(image.original);
+$out+='" class=\'img-rounded\' width="80"><i class=\'fa fa-fw fa-close delUploadFile\' style=\'cursor: pointer\' title=\'删除文件\'></i> ';
+}else{
+$out+=' <img src="';
+$out+=$escape(image.original);
+$out+='" data-src="" class=\'img-rounded\' width="80"><i class=\'fa fa-fw fa-close delUploadFile\' style=\'cursor: pointer\' title=\'删除文件\'></i> ';
+}
+$out+=' ';
 });
 $out+=' ';
 }
