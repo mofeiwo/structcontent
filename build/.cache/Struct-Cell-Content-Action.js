@@ -1,2 +1,2 @@
-/*TMODJS:{"version":3,"md5":"62c7a172a347046ce522e07292e50171"}*/
+/*TMODJS:{"version":5,"md5":"62c7a172a347046ce522e07292e50171"}*/
 template('Struct-Cell-Content-Action','<div class="cell-content-action"> <div class="btn-group-vertical" role="group" aria-label="Vertical button group"> <button type="button" class="btn btn-default glyphicon glyphicon-remove delCellContentBtn" title="ɾ��"></button> </div> </div>');

@@ -112,6 +112,7 @@
     background-color: transparent;
     min-height: 210px;
     max-height: 500px;
+    height:auto!important;
 
 }
 

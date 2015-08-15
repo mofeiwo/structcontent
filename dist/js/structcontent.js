@@ -23,6 +23,8 @@ structcontent.prototype.init = function (settings) {
     this.structCell();
 
     this.loadFunc();
+
+    this.refreshInitAdvanceCellAction();
 };
 
 
@@ -94,10 +96,9 @@ structcontent.prototype.structCell = function () {
         self.$structContainerContent.append(cellContent);
     } else {
         structType = self.settings.structType;
-        if(structType == 'advance')
-        {
+        if (structType == 'advance') {
             cellContent = template('T-Advance', {});
-        }else{
+        } else {
             cellContent = template('T-Simple', {});
         }
 
@@ -147,7 +148,10 @@ structcontent.prototype.addChildCell = function () {
 
     self.$container.on("click", '.addChildCellBtn', function () {
         var cellContentChildHtml = template('T-Advance-Content', {});
-        $(this).parents('.struct-cell').find('.cell-content').append(cellContentChildHtml);
+        var cellContentObj = $(this).parents('.struct-cell').find('.cell-content');
+        cellContentObj.append(cellContentChildHtml);
+
+        self.refreshCurrentAdvanceCellAction(cellContentObj);
 
         self.eventCollection();
     });
@@ -274,11 +278,13 @@ structcontent.prototype.deleteCell = function () {
 structcontent.prototype.deleteCellContent = function () {
     var self = this;
     self.$container.on("click", '.delCellContentBtn', function () {
-        var cellContentChildCount = $(this).parents('.cell-content').find('.cell-content-child').length;
+        var cellContentObj = $(this).parents('.cell-content');
+        var cellContentChildCount = cellContentObj.find('.cell-content-child').length;
         if (cellContentChildCount > 1) {
             if (confirm('确认删除吗？')) {
                 $(this).parents('.cell-content-child').remove();
 
+                self.refreshCurrentAdvanceCellAction(cellContentObj);
                 self.eventCollection();
             }
             return false;
@@ -330,6 +336,41 @@ structcontent.prototype.refreshActionEvent = function () {
         structCellObj.eq(cellLength - 1).find('.downCellBtn').hide();
     }
 
+}
+
+/**
+ * 初始化刷新 高级单元的内容操作显示问题
+ */
+structcontent.prototype.refreshInitAdvanceCellAction = function () {
+    var self = this;
+
+    var structCellObj = self.$container.find('.struct-container-content > .struct-cell');
+    structCellObj.each(function () {
+        var structType = $(this).find('.struct-type').val();
+        if (structType == 'advance') {
+            var cellContentChildObj = $(this).find('.cell-content > .cell-content-child');
+            if (cellContentChildObj.length <= 1) {
+                cellContentChildObj.eq(0).find('.delCellContentBtn').hide();
+            } else {
+                cellContentChildObj.find('.delCellContentBtn').show();
+            }
+        }
+    });
+}
+
+/**
+ * 刷新当前 高级单元的内容操作显示问题 处于性能考虑，没有使用 refreshInitAdvanceCellAction 方法
+ * @params object obj 高级模板的对象
+ */
+structcontent.prototype.refreshCurrentAdvanceCellAction = function (obj) {
+    var self = this;
+
+    var cellContentChildObj = obj.find('.cell-content-child');
+    if (cellContentChildObj.length <= 1) {
+        cellContentChildObj.eq(0).find('.delCellContentBtn').hide();
+    } else {
+        cellContentChildObj.find('.delCellContentBtn').show();
+    }
 }
 
 /**
