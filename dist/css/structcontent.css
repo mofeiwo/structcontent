@@ -107,17 +107,16 @@
 }
 
 .structContentWrap .cell-border {
-
-    border-radius: 4px;
+    border-radius: 2px;
     background-color: transparent;
-    min-height: 210px;
-    max-height: 500px;
     height:auto!important;
-
+    border: 1px dashed #cdcdcd;
+    padding: 2px;
 }
 
 .structContentWrap .struct-cell {
     margin: 4px 0px;
+    overflow: hidden;
 }
 
 .structContentWrap .struct-cell-children {

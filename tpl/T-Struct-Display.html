@@ -15,8 +15,8 @@
                     </div>
                     <div class="cell-content-img">
                         <input type="file" class="btn_file cell_img_hide">
-                        <input class="btn_change_pic" type="button"
-                               onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                        <button class="btn btn-default btn_change_pic glyphicon glyphicon-picture btnChangePic" type="button"
+                                onclick="$(this).siblings('.btn_file').trigger('click');" title="上传图片"></button>
                         <span class="cellImgList">
                         {{if content.img && content.img.length>0}}
                         {{each content.img as image}}
@@ -53,8 +53,8 @@
             </div>
             <div class="cell-content-img">
                 <input type="file" class="btn_file cell_img_hide">
-                <input class="btn_change_pic" type="button"
-                       onclick="$(this).siblings('.btn_file').trigger('click');" value="图片">
+                <button class="btn btn-default btn_change_pic glyphicon glyphicon-picture btnChangePic" type="button"
+                        onclick="$(this).siblings('.btn_file').trigger('click');" title="上传图片"></button>
                 <span class="cellImgList">
                 {{if cell.content.img && cell.content.img.length>0}}
                 {{each cell.content.img as image}}

@@ -1,4 +1,4 @@
-/*TMODJS:{"version":10,"md5":"b1f14d9259291941c8e647348e22d017"}*/
+/*TMODJS:{"version":13,"md5":"64104f5557d9535c198a1f4dfe91e050"}*/
 template('T-Struct-Display',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,structData=$data.structData,$each=$utils.$each,cell=$data.cell,idx=$data.idx,$escape=$utils.$escape,content=$data.content,$index=$data.$index,image=$data.image,include=function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);$out+=text;return $out;},$out='';if(structData && structData.length>0){
@@ -12,7 +12,7 @@ $out+='" class="form-control title_val" placeholder="标题"> </div> <div class=
 $each(cell.content,function(content,$index){
 $out+=' <div class="cell-content-child"> <div class="col-md-11 reset-margin-padding"> <div class="cell-content-txt"> <textarea class="form-control text_val" rows="6" placeholder="内容">';
 $out+=$escape(content.txt);
-$out+='</textarea> </div> <div class="cell-content-img"> <input type="file" class="btn_file cell_img_hide"> <input class="btn_change_pic" type="button" onclick="$(this).siblings(\'.btn_file\').trigger(\'click\');" value="图片"> <span class="cellImgList"> ';
+$out+='</textarea> </div> <div class="cell-content-img"> <input type="file" class="btn_file cell_img_hide"> <button class="btn btn-default btn_change_pic glyphicon glyphicon-picture btnChangePic" type="button" onclick="$(this).siblings(\'.btn_file\').trigger(\'click\');" title="上传图片"></button> <span class="cellImgList"> ';
 if(content.img && content.img.length>0){
 $out+=' ';
 $each(content.img,function(image,$index){
@@ -42,7 +42,7 @@ $out+=' </div> <input type="hidden" class="struct-type" value="advance"/> </div>
 }else if(cell.type=='simple'){
 $out+=' <div class="struct-cell cell-border"> <div class="col-md-11 reset-margin-padding"> <div class="cell-content"> <div class="cell-content-txt"> <textarea class="form-control text_val" rows="6" placeholder="内容">';
 $out+=$escape(cell.content.txt);
-$out+='</textarea> </div> <div class="cell-content-img"> <input type="file" class="btn_file cell_img_hide"> <input class="btn_change_pic" type="button" onclick="$(this).siblings(\'.btn_file\').trigger(\'click\');" value="图片"> <span class="cellImgList"> ';
+$out+='</textarea> </div> <div class="cell-content-img"> <input type="file" class="btn_file cell_img_hide"> <button class="btn btn-default btn_change_pic glyphicon glyphicon-picture btnChangePic" type="button" onclick="$(this).siblings(\'.btn_file\').trigger(\'click\');" title="上传图片"></button> <span class="cellImgList"> ';
 if(cell.content.img && cell.content.img.length>0){
 $out+=' ';
 $each(cell.content.img,function(image,$index){
