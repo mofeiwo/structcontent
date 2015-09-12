@@ -69,6 +69,8 @@ structcontent.prototype.loadFunc = function () {
     this.uploadPic();
 
     this.saveAllCell();
+
+    this.autoSaveAction();
 }
 
 /**
@@ -374,6 +376,28 @@ structcontent.prototype.refreshCurrentAdvanceCellAction = function (obj) {
 }
 
 /**
+ * 自动保存动作 集合
+ * @2015.9.12
+ */
+structcontent.prototype.autoSaveAction = function () {
+    var self = this;
+    /**
+     * 高级模式下 标题修改，触发保存操作
+     */
+    self.$container.on('keyup', "input[type='text']", function () {
+        self.storeJson();
+    });
+
+    /**
+     * 文本域修改，触发保存操作
+     */
+    self.$container.on('keyup', 'textarea', function () {
+        self.storeJson();
+    })
+
+}
+
+/**
  * 单元模型 存储到JSON中
  */
 structcontent.prototype.storeJson = function () {
@@ -477,11 +501,11 @@ structcontent.prototype.uploadPic = function () {
                             var pic_url = "http://img2.tuniucdn.com/site/file/deyonUserCenter/images/nomarl.jpg";
                             if (res) {
                                 var pic_url = res.url;
-
                                 var picHtml = "<img src='" + pic_url + "' data-src='" + pic_url + "' alt='图片' width='80' class='img-rounded'>";
-
                                 $cur.parent('.cell-content-img').append(picHtml);
+                                self.storeJson();
                             } else {
+                                console.log(res);
                                 alert('上传失败');
                             }
 
