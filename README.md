@@ -1,5 +1,6 @@
 # structcontent
 structcontent 结构内容。演示效果如下:
+
 ![结构内容](http://cdn.mofeiwo.com/jgnr.png?imageView2/2/w/600/h/500)
 
 
